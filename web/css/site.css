@@ -2,6 +2,8 @@ html,
 body {
     height: 100%;
     background: #3E2723;
+    color: white;
+    font-family : "Courier New", sans-serif;
 }
 
 h1 {
@@ -10,6 +12,27 @@ h1 {
     text-align  : center;
     margin      : 50px;
 }
+
+
+
+.b-buttons {
+    text-align : center;
+    margin     : 20px;
+}
+
+.b-button {
+    display    : inline-block;
+    border     : 2px solid #b3b300;
+    background : black;
+    cursor     : pointer;
+    padding: 2px 10px;
+}
+
+    .b-button:hover {
+        color : yellow;
+    }
+
+
 
 .b-gamefield {
     width         : 500px;
@@ -51,45 +74,44 @@ h1 {
     transition         : opacity .2s linear;
 }
 
-.b-cell--lit {
-    opacity: 1;
+    .b-cell--lit {
+        opacity: 1;
 
-    box-shadow : 0 0 20px yellow;
+        box-shadow : 0 0 20px yellow;
 
-    background : #f8ffe8; /* Old browsers */
-    background : -moz-linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* FF3.6-15 */
-    background : -webkit-linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* Chrome10-25,Safari5.1-6 */
-    background : linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter     : progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8ffe8', endColorstr='#b7df2d', GradientType=0); /* IE6-9 */
+        background : #f8ffe8; /* Old browsers */
+        background : -moz-linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* FF3.6-15 */
+        background : -webkit-linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* Chrome10-25,Safari5.1-6 */
+        background : linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter     : progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8ffe8', endColorstr='#b7df2d', GradientType=0); /* IE6-9 */
 
-    background-size: 400% 400%;
+        background-size: 400% 400%;
 
-    -webkit-animation: AnimationName 2s ease infinite;
-    -moz-animation: AnimationName 2s ease infinite;
-    animation: AnimationName 2s ease infinite;
-}
+        -webkit-animation: AnimationName 2s ease infinite;
+        -moz-animation: AnimationName 2s ease infinite;
+        animation: AnimationName 2s ease infinite;
+    }
 
-.b-cell--hide {
-    opacity: 0;
-}
+    .b-cell--hide {
+        opacity: 0;
+    }
 
 
 
-/*** Анимация ***/
+    /*** Анимация ***/
 
-@-webkit-keyframes AnimationName {
-    0%{background-position:0% 51%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 51%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:0% 51%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 51%}
-}
-@keyframes AnimationName {
-    0%{background-position:0% 51%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 51%}
-}
-
+    @-webkit-keyframes AnimationName {
+        0%{background-position:0% 51%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 51%}
+    }
+    @-moz-keyframes AnimationName {
+        0%{background-position:0% 51%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 51%}
+    }
+    @keyframes AnimationName {
+        0%{background-position:0% 51%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 51%}
+    }

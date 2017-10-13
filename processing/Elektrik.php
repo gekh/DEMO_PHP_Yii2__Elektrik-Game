@@ -33,7 +33,16 @@ class Elektrik extends Component
 
     public function play($row, $column)
     {
-        $this->map[$row][$column] = 1;
+        for ($row = 1; $row <= 5; $row++) {
+            for ($column = 1; $column <= 5; $column++) {
+                $is_in_row_range = (in_array($row, [$row-1, $row, $row+1]));
+                $is_in_column_range = (in_array($column, [$column-1, $column, $column+1]));
+
+                if ($is_in_row_range and $is_in_column_range) {
+                    $this->map[$row][$column] = 1;
+                }
+            }
+        }
     }
 
     public function getMap()

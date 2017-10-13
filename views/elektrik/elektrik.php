@@ -7,6 +7,10 @@ $this->title = 'Игра «Електрик»';
 
 <h1><?=$this->title ?></h1>
 
+<div class="b-buttons">
+    <div class="b-button js-button--new-game">Новая игра</div>
+</div>
+
 <div class="site-index">
 
     <div class="body-content">
@@ -54,7 +58,7 @@ $click = <<<JS
                     column: column
                 }    
             }).done(function(map) {
-                fillGamefield(map);
+                updateGamefield(map);
             });
 
         });
@@ -68,17 +72,20 @@ $click = <<<JS
                 method: 'POST',
                 data: {}    
             }).done(function(map) {
-                fillGamefield(map);
+                updateGamefield(map);
             });
         }
         
-        function fillGamefield(map) {
+        function updateGamefield(map) {
             for (var row = 1; row <= 5; row++) {
                 for (var column = 1; column <= 5; column++) {
+                    var id = 'cell-' + row + column;
+                    var element = document.getElementById(id);
+                    
                     if (map[row][column]==1) { 
-                        var id = 'cell-' + row + column;
-                        var element = document.getElementById(id);
                         on(element);
+                    } else {
+                        off(element);
                     }
                 }
             }

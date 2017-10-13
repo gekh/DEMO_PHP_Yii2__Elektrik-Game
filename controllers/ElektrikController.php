@@ -11,8 +11,10 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\processing\Elektrik;
 
-class SiteController extends Controller
+class ElektrikController extends Controller
 {
+
+    public $defaultAction = 'elektrik';
     /**
      * @inheritdoc
      */
@@ -60,9 +62,9 @@ class SiteController extends Controller
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionElektrik()
     {
-        return $this->render('index');
+        return $this->render('elektrik');
     }
 
     public function actionAJAXClickCell()
