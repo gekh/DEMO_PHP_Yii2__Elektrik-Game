@@ -77,7 +77,7 @@ class ElektrikController extends Controller
         $elektrik->play($row, $column);
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return $elektrik->getMap();
+        return $this->gameData();
     }
 
     public function actionAJAXLoadMap()
@@ -85,7 +85,16 @@ class ElektrikController extends Controller
         $elektrik = $this->getElektrik();
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return $elektrik->getMap();
+        return $this->gameData();
+    }
+
+    public function actionAJAXNewGame()
+    {
+        $elektrik = $this->getElektrik();
+        $elektrik->reset();
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $this->gameData();
     }
 
     public function getElektrik()
@@ -98,6 +107,16 @@ class ElektrikController extends Controller
         }
 
         return $elektrik;
+    }
+
+    public function gameData()
+    {
+        $elektrik = $this->getElektrik();
+
+        return [
+            'win' => $elektrik->isWin(),
+            'map' => $elektrik->getMap(),
+        ];
     }
 
 }
