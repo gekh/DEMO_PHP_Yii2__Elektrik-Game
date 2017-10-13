@@ -4,113 +4,90 @@ body {
     background: #3E2723;
 }
 
-.wrap {
-    min-height: 100%;
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
+h1 {
+    font-family : "Courier New", sans-serif;
+    color       : white;
+    text-align  : center;
+    margin      : 50px;
 }
 
-.wrap > .container {
-    padding: 70px 15px 20px;
+.b-gamefield {
+    width         : 500px;
+    height        : 500px;
+    background    : black;
+    border        : 3px solid #009688;
+    border-radius : 20px;
+    margin        : auto;
+    padding       : 20px;
 }
 
-.footer {
-    height: 60px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
+.b-cell-wrap {
+    display          : inline-block;
+    width            : 80px;
+    height           : 80px;
+    margin           : 5px;
+    text-align       : center;
+    vertical-align   : bottom;
+    background-color : #009688;
+    padding          : 10px;
+    border-radius    : 100%;
+    box-shadow       : inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+
 }
 
-.jumbotron {
-    text-align: center;
-    background-color: transparent;
+.b-cell {
+    width              : 60px;
+    height             : 60px;
+    border-radius      : 100%;
+    margin             : auto;
+    cursor             : pointer;
+    opacity            : 0;
+
+    -webkit-transition : opacity .2s linear;
+    -moz-transition    : opacity .2s linear;
+    -o-transition      : opacity .2s linear;
+    transition         : opacity .2s linear;
 }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+.b-cell--lit {
+    opacity: 1;
+
+    box-shadow : 0 0 20px yellow;
+
+    background : #f8ffe8; /* Old browsers */
+    background : -moz-linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* FF3.6-15 */
+    background : -webkit-linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* Chrome10-25,Safari5.1-6 */
+    background : linear-gradient(135deg, #f8ffe8 0%, #e3f5ab 33%, #b7df2d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter     : progid:DXImageTransform.Microsoft.gradient(startColorstr='#f8ffe8', endColorstr='#b7df2d', GradientType=0); /* IE6-9 */
+
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 2s ease infinite;
+    -moz-animation: AnimationName 2s ease infinite;
+    animation: AnimationName 2s ease infinite;
 }
 
-.not-set {
-    color: #c55;
-    font-style: italic;
+.b-cell--hide {
+    opacity: 0;
 }
 
-/* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    padding-left: 5px;
+
+
+/*** Анимация ***/
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 51%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 51%}
 }
 
-a.asc:after {
-    content: /*"\e113"*/ "\e151";
-}
-
-a.desc:after {
-    content: /*"\e114"*/ "\e152";
-}
-
-.sort-numerical a.asc:after {
-    content: "\e153";
-}
-
-.sort-numerical a.desc:after {
-    content: "\e154";
-}
-
-.sort-ordinal a.asc:after {
-    content: "\e155";
-}
-
-.sort-ordinal a.desc:after {
-    content: "\e156";
-}
-
-.grid-view th {
-    white-space: nowrap;
-}
-
-.hint-block {
-    display: block;
-    margin-top: 5px;
-    color: #999;
-}
-
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 15px;
-    }
-}
-
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
-    text-decoration: none;
-}
-
-.nav > li > form > button.logout:focus {
-    outline: none;
-}
