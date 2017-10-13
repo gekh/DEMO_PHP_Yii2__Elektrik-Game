@@ -62,15 +62,40 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $elektrik = new Elektrik();
-        $elektrik->dump();
-//        Yii::$app->session->set = new Elektrik();
         return $this->render('index');
     }
 
     public function actionAJAXClickCell()
     {
+        $elektrik = $this->getElektrik();
 
+        $row = intval($_POST['row']);
+        $column = intval($_POST['column']);
+
+        $elektrik->play($row, $column);
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $elektrik->getMap();
+    }
+
+    public function actionAJAXLoadMap()
+    {
+        $elektrik = $this->getElektrik();
+
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        return $elektrik->getMap();
+    }
+
+    public function getElektrik()
+    {
+        $elektrik = \Yii::$app->session->get('elektrik');
+
+        if (!$elektrik) {
+            $elektrik = new Elektrik();
+            \Yii::$app->session->set('elektrik', $elektrik);
+        }
+
+        return $elektrik;
     }
 
 }

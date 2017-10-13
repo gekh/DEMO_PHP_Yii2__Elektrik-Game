@@ -31,4 +31,14 @@ class Elektrik extends Component
         }
     }
 
+    public function play($row, $column)
+    {
+        $this->map[$row][$column] = 1;
+    }
+
+    public function getMap()
+    {
+        return $this->map;
+    }
+
 }
