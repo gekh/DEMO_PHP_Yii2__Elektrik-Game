@@ -11,7 +11,7 @@ $this->title = 'Игра «Електрик»';
         width         : 500px;
         height        : 500px;
         background    : black;
-        border        : 3px solid gold;
+        border        : 3px solid #009688;
         border-radius : 20px;
         margin        : auto;
         padding       : 20px;
@@ -22,7 +22,7 @@ $this->title = 'Игра «Електрик»';
         width            : 80px;
         height           : 80px;
         margin           : 5px;
-        background-color : gold;
+        background-color : #009688;
         vertical-align   : bottom;
         border-radius: 100%;
 
