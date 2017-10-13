@@ -16,9 +16,7 @@ $this->title = 'Игра «Електрик»';
             <?php for($row=1; $row <= 5; $row++): ?>
                 <?php for($column=1; $column <= 5; $column++): ?>
 
-                    <?php $light_class = ($row > 3 and $column >= 3) ? "b-cell--lit" : "" ?>
-
-                    --><div class="b-cell-wrap"><div class="b-cell js-cell <?=$light_class ?>"></div></div><!--
+                    --><div class="b-cell-wrap"><div class="b-cell js-cell"></div></div><!--
 
                 <?php endfor ?>
             <?php endfor ?>
@@ -27,6 +25,8 @@ $this->title = 'Игра «Електрик»';
 
     </div>
 </div>
+
+
 
 <?php
 
