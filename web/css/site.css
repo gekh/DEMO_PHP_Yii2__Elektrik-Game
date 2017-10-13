@@ -134,13 +134,13 @@ input {
 }
 
 
-.b-winner {
+.b-popup {
     display     : none;
 
     width       : 40vw;
     margin-left : -20vw;
 
-    height      : 30vh;
+    min-height  : 30vh;
     margin-top  : -15vw;
 
     position    : absolute;
@@ -151,7 +151,7 @@ input {
     padding     : 30px;
 }
 
-    .b-winner__close {
+    .b-popup__close {
         color       : white;
         position    : absolute;
         right       : 15px;
@@ -161,9 +161,10 @@ input {
         cursor      : pointer;
     }
 
-    .b-winner__close:hover {
+    .b-popup__close:hover {
         color: yellow;
     }
+
 
 .b-winner-form {
     width : 400px;
@@ -172,4 +173,25 @@ input {
 
     .b-winner-form__header {
         color: #ffff00;
+    }
+
+
+.b-best-table {
+    border : 2px solid white;
+}
+
+    .b-best-table tr {
+        border-bottom: 1px dashed green;
+    }
+
+    .b-best-table td {
+        padding: 5px;
+    }
+
+    .b-best-table tr td:nth-child(1) {
+        color : yellow;
+    }
+
+    .b-best-table tr td:nth-child(2) {
+        font-weight : bold;
     }

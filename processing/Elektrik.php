@@ -23,6 +23,8 @@ class Elektrik extends Component
     public function getMap() { return $this->map; }
     public function  isWin() { return $this->win; }
     public function getStepCount() { return $this->step_count; }
+    public function getBest() { return $this->best; }
+
 
     public function reset()
     {
@@ -80,6 +82,8 @@ class Elektrik extends Component
         }
 
         $this->best[$name] = $this->step_count;
+
+        asort($this->best);
     }
 
     protected function misfortune($play_row, $play_column)

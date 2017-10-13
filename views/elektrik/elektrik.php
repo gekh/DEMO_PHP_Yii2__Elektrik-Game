@@ -9,6 +9,7 @@ $this->title = 'Игра «Електрик»';
 
 <div class="b-buttons">
     <div class="b-button js-button--new-game">Новая игра</div>
+    <div class="b-button js-button--best">Лучшие результаты</div>
 </div>
 
 <div class="site-index">
@@ -35,14 +36,22 @@ $this->title = 'Игра «Електрик»';
         </div>
 
 
-        <div class="b-winner js-winner">
-            <div class="b-winner__close js-winner__close">&times;</div>
+        <div class="b-popup js-winner">
+            <div class="b-popup__close js-popup__close">&times;</div>
+
             <form class="b-winner-form js-winner-form" action="/">
                 <h2 class="b-winner-form__header">Вы победили!</h2>
                 <br>
                 <input type="text" name="name" placeholder="Ваше имя">
                 <button type="submit" class="b-button">Отправить</button>
             </form>
+        </div>
+
+        <div class="b-popup js-best">
+            <div class="b-popup__close js-popup__close">&times;</div>
+
+            <h2 class="b-winner-form__header">Лучшие результаты</h2>
+            <table class="b-best-table js-best-table"></table>
         </div>
 
     </div>
@@ -84,7 +93,25 @@ $click = <<<JS
             resetField();
         });
          
-         $('body').on('click', '.js-winner__close', function(event) {
+         $('body').on('click', '.js-button--best', function(event) {
+             event.preventDefault();
+             
+             $.ajax({
+                 url: '/elektrik/a-j-a-x-load-winners',
+                 method: 'POST',
+             }).done(function(winners) {
+                $('.js-best-table').html('');
+                 Object.keys(winners).map(function(key, index) {
+                    var value = winners[key];
+                    $('.js-best-table').append('<tr><td>' + key + '</td><td>' + value + '</td></tr>');
+                });
+                 
+             });
+             
+             $('.js-best').show();
+         });
+         
+         $('body').on('click', '.js-popup__close', function(event) {
              event.preventDefault();
              
              resetField();
@@ -101,7 +128,7 @@ $click = <<<JS
                  method: 'POST',
                  data: $(this).serialize()    
              }).done(function() {
-                 $(that).parents('.js-winner').hide();
+                 $(that).parent().hide();
                  resetField();
              });
          });
