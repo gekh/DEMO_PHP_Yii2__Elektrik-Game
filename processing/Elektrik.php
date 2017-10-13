@@ -20,6 +20,7 @@ class Elektrik extends Component
 
     public function getMap() { return $this->map; }
     public function  isWin() { return $this->win; }
+    public function getStepCount() { return $this->step_count; }
 
     public function reset()
     {
@@ -44,6 +45,7 @@ class Elektrik extends Component
 
     public function play($play_row, $play_column)
     {
+        $this->step_count++;
 
         for ($row = 1; $row <= 5; $row++) {
             for ($column = 1; $column <= 5; $column++) {

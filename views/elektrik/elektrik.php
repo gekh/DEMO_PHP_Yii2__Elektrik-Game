@@ -30,6 +30,10 @@ $this->title = 'Игра «Електрик»';
 
         --></div>
 
+        <div class="b-ste-counter">
+            Сделано ходов: <span class="js-step-count"></span>
+        </div>
+
 
         <div class="b-winner js-winner">
             <div class="b-winner__close js-winner__close">&times;</div>
@@ -69,8 +73,7 @@ $click = <<<JS
                     column: column
                 }    
             }).done(function(game_data) {
-                updateGamefield(game_data['map']);
-                checkForWin(game_data['win']);
+                updateGame(game_data);
             });
 
         });
@@ -97,8 +100,7 @@ $click = <<<JS
                 method: 'POST',
                 data: {}    
             }).done(function(game_data) {
-                updateGamefield(game_data['map']);
-                checkForWin(game_data['win']);
+                updateGame(game_data);
             });
         }
         
@@ -107,11 +109,15 @@ $click = <<<JS
                 url: '/elektrik/a-j-a-x-new-game',
                 method: 'POST',
             }).done(function(game_data) {
-                updateGamefield(game_data['map']);
-                checkForWin(game_data['win']);
+                updateGame(game_data);
             });
         }
 
+        function updateGame(game_data) {
+            updateGamefield(game_data['map']);
+            updateStepCount(game_data['step_count']);
+                checkForWin(game_data['win']);
+        }
         
         function updateGamefield(map) {
             for (var row = 1; row <= 5; row++) {
@@ -119,13 +125,17 @@ $click = <<<JS
                     var id = 'cell-' + row + column;
                     var element = document.getElementById(id);
                     
-                    if (map[row][column]==1) { 
+                    if (map[row][column] == 1) { 
                         on(element);
                     } else {
                         off(element);
                     }
                 }
             }
+        }
+        
+        function updateStepCount(step_count) {
+            $('.js-step-count').text(step_count);
         }
         
         function checkForWin(is_win) {

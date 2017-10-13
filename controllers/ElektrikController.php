@@ -116,6 +116,7 @@ class ElektrikController extends Controller
         return [
             'win' => $elektrik->isWin(),
             'map' => $elektrik->getMap(),
+            'step_count' => $elektrik->getStepCount(),
         ];
     }
 
