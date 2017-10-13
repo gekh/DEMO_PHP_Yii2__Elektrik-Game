@@ -3,65 +3,15 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\Response;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
 use app\processing\Elektrik;
 
 class ElektrikController extends Controller
 {
 
     public $defaultAction = 'elektrik';
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
 
-    /**
-     * @inheritdoc
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ],
-            'captcha' => [
-                'class' => 'yii\captcha\CaptchaAction',
-                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
-            ],
-        ];
-    }
-
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
     public function actionElektrik()
     {
         return $this->render('elektrik');
@@ -95,6 +45,13 @@ class ElektrikController extends Controller
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return $this->gameData();
+    }
+
+    public function actionAJAXSaveWinner()
+    {
+        $elektrik = $this->getElektrik();
+        $name = strval($_POST['name']);
+        $elektrik->saveWinner($name);
     }
 
     public function getElektrik()

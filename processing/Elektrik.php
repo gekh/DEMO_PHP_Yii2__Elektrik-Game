@@ -3,6 +3,7 @@
 namespace app\processing;
 
 use yii\base\Component;
+use yii\helpers\VarDumper;
 
 class Elektrik extends Component
 {
@@ -10,6 +11,7 @@ class Elektrik extends Component
     protected $map = [];
     protected $win = false;
     protected $step_count = 0;
+    protected $best = [];
 
     public function __construct(array $config = [])
     {
@@ -41,6 +43,8 @@ class Elektrik extends Component
             }
             echo '<br>';
         }
+
+        VarDumper::dump($this->best);
     }
 
     public function play($play_row, $play_column)
@@ -63,6 +67,19 @@ class Elektrik extends Component
         $this->misfortune($play_row, $play_column);
 
         $this->checkForWin();
+    }
+
+    public function saveWinner($name)
+    {
+        if (empty($name)) {
+            return;
+        }
+
+        if (isset($this->best[$name]) and $this->best[$name] < $this->step_count) {
+            return;
+        }
+
+        $this->best[$name] = $this->step_count;
     }
 
     protected function misfortune($play_row, $play_column)

@@ -37,10 +37,10 @@ $this->title = 'Игра «Електрик»';
 
         <div class="b-winner js-winner">
             <div class="b-winner__close js-winner__close">&times;</div>
-            <form class="b-winner-form" action="/">
+            <form class="b-winner-form js-winner-form" action="/">
                 <h2 class="b-winner-form__header">Вы победили!</h2>
                 <br>
-                <input type="text" placeholder="Ваше имя">
+                <input type="text" name="name" placeholder="Ваше имя">
                 <button type="submit" class="b-button">Отправить</button>
             </form>
         </div>
@@ -89,6 +89,21 @@ $click = <<<JS
              
              resetField();
              $(this).parent().hide();
+         });
+         
+         $('body').on('submit', '.js-winner-form', function(event) {
+             event.preventDefault();
+             
+             var that = this;
+             
+             $.ajax({
+                 url: '/elektrik/a-j-a-x-save-winner',
+                 method: 'POST',
+                 data: $(this).serialize()    
+             }).done(function() {
+                 $(that).parents('.js-winner').hide();
+                 resetField();
+             });
          });
         
         
