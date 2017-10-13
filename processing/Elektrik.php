@@ -3,7 +3,6 @@
 namespace app\processing;
 
 use yii\base\Component;
-use yii\helpers\VarDumper;
 
 class Elektrik extends Component
 {
@@ -59,7 +58,25 @@ class Elektrik extends Component
             }
         }
 
+        $this->misfortune($play_row, $play_column);
+
         $this->checkForWin();
+    }
+
+    protected function misfortune($play_row, $play_column)
+    {
+        if (rand(1, 25) == 25) {
+            do {
+                $rand_row    = rand(1, 5);
+                $rand_column = rand(1, 5);
+            } while (
+                $rand_row != $play_row and
+                $rand_column != $play_column and
+                $this->map[$rand_row][$rand_column] != 1);
+
+            $this->map[$rand_row][$rand_column] = 0;
+        }
+
     }
 
     protected function checkForWin()
