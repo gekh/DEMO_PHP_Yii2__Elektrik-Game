@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\processing\Elektrik;
 
 class SiteController extends Controller
 {
@@ -61,7 +62,15 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $elektrik = new Elektrik();
+        $elektrik->dump();
+//        Yii::$app->session->set = new Elektrik();
         return $this->render('index');
+    }
+
+    public function actionAJAXClickCell()
+    {
+
     }
 
 }
