@@ -22,7 +22,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'elektrik/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

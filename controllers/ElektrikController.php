@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Leaderboard;
 use Yii;
 use yii\web\Controller;
 use yii\web\Response;
@@ -11,6 +12,15 @@ class ElektrikController extends Controller
 {
 
     public $defaultAction = 'elektrik';
+
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
 
     public function actionElektrik()
     {
