@@ -180,6 +180,10 @@ input {
         color: #ffff00;
     }
 
+    .b-winner-form__step_count {
+        font-size   : 140%;
+    }
+
 
 .b-leaderboard {
     margin: auto;

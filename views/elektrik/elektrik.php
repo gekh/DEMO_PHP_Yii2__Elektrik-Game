@@ -41,6 +41,7 @@ $this->title = 'Игра «Електрик»';
 
             <form class="b-winner-form js-winner-form" action="/">
                 <h2 class="b-winner-form__header">Вы победили!</h2>
+                <h3 class="b-winner-form__header">Ваш результат: <span class="b-winner-form__step_count js-winner__step-count"></span></h3>
                 <br>
                 <input type="text" name="name" placeholder="Ваше имя">
                 <button type="submit" class="b-button">Отправить</button>
@@ -160,7 +161,7 @@ $click = <<<JS
         function updateGame(game_data) {
             updateGamefield(game_data['map']);
             updateStepCount(game_data['step_count']);
-                checkForWin(game_data['win']);
+                checkForWin(game_data);
         }
         
         function updateGamefield(map) {
@@ -182,8 +183,9 @@ $click = <<<JS
             $('.js-step-count').text(step_count);
         }
         
-        function checkForWin(is_win) {
-            if (is_win) {
+        function checkForWin(game_data) {
+            if (game_data['win']) {
+                $('.js-winner__step-count').text(game_data['step_count']);
                 $('.js-winner').show();
             }
         }
