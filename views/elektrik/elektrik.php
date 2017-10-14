@@ -43,10 +43,12 @@ $this->title = 'Игра «Електрик»';
                 <h2 class="b-winner-form__header">Вы победили!</h2>
                 <h3 class="b-winner-form__header">Ваш результат: <span class="b-winner-form__step_count js-winner__step-count"></span></h3>
                 <br>
-                <input type="text" name="name" placeholder="Ваше имя">
+                Ваше имя: <br>
+                <input class="b-winner-form__input" type="text" name="name" value="<?=$elektrik->getName() ?>">
                 <button type="submit" class="b-button">Отправить</button>
             </form>
         </div>
+
 
         <div class="b-popup js-leaderboard">
             <div class="b-popup__close js-popup__close">&times;</div>

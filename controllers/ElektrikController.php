@@ -21,7 +21,8 @@ class ElektrikController extends Controller
 
     public function actionElektrik()
     {
-        return $this->render('elektrik');
+        $elektrik = $this->getElektrik();
+        return $this->render('elektrik', compact('elektrik'));
     }
 
     public function actionAJAXClickCell()

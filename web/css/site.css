@@ -141,10 +141,9 @@ input {
     margin-left : -20vw;
 
     min-height  : 30vh;
-    margin-top  : -15vw;
 
     position    : absolute;
-    top         : 50%;
+    top         : 20%;
     left        : 50%;
     background  : rgba(0, 0, 0, 0.8);
     border      : 5px solid gold;
@@ -182,6 +181,10 @@ input {
 
     .b-winner-form__step_count {
         font-size   : 140%;
+    }
+
+    .b-winner-form__input {
+        font-weight : bold;
     }
 
 

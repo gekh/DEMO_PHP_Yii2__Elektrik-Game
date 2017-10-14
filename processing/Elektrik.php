@@ -13,7 +13,7 @@ class Elektrik extends Component
     protected $map = [];
     protected $win = false;
     protected $step_count = 0;
-    protected $best = [];
+    protected $name = '';
 
     public function __construct(array $config = [])
     {
@@ -25,6 +25,8 @@ class Elektrik extends Component
     public function getMap() { return $this->map; }
     public function  isWin() { return $this->win; }
     public function getStepCount() { return $this->step_count; }
+    public function getName() { return $this->name; }
+
 
     public function getLeaderboard() {
 
@@ -94,6 +96,8 @@ class Elektrik extends Component
         $Leaderboard->name = $name;
         $Leaderboard->step_count = $this->step_count;
         $Leaderboard->save();
+
+        $this->name = $name;
     }
 
     protected function misfortune($play_row, $play_column)
