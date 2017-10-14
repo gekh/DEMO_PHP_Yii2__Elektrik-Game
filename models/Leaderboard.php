@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "leaderboard".
@@ -22,6 +24,17 @@ class Leaderboard extends \yii\db\ActiveRecord
         return 'leaderboard';
     }
 
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'updatedAtAttribute' => false,
+                'value' => function(){ return date('Y-m-d H:i:s');},
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -29,7 +42,6 @@ class Leaderboard extends \yii\db\ActiveRecord
     {
         return [
             [['step_count'], 'integer'],
-            [['created_at'], 'safe'],
             [['name'], 'string', 'max' => 255],
         ];
     }
