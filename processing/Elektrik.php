@@ -2,7 +2,9 @@
 
 namespace app\processing;
 
+use app\models\Leaderboard;
 use yii\base\Component;
+use yii\db\Query;
 use yii\helpers\VarDumper;
 
 class Elektrik extends Component
@@ -23,8 +25,21 @@ class Elektrik extends Component
     public function getMap() { return $this->map; }
     public function  isWin() { return $this->win; }
     public function getStepCount() { return $this->step_count; }
-    public function getBest() { return $this->best; }
 
+    public function getLeaderboard() {
+
+        $query = new Query();
+
+        return $query
+            ->select(['name', 'step_count'])
+            ->from('leaderboard')
+            ->orderBy([
+                'step_count' => SORT_ASC,
+                'created_at' => SORT_DESC,
+            ])
+            ->limit(10)
+            ->all();
+    }
 
     public function reset()
     {
@@ -45,8 +60,6 @@ class Elektrik extends Component
             }
             echo '<br>';
         }
-
-        VarDumper::dump($this->best);
     }
 
     public function play($play_row, $play_column)
@@ -77,13 +90,10 @@ class Elektrik extends Component
             return;
         }
 
-        if (isset($this->best[$name]) and $this->best[$name] < $this->step_count) {
-            return;
-        }
-
-        $this->best[$name] = $this->step_count;
-
-        asort($this->best);
+        $Leaderboard = new Leaderboard();
+        $Leaderboard->name = $name;
+        $Leaderboard->step_count = $this->step_count;
+        $Leaderboard->save();
     }
 
     protected function misfortune($play_row, $play_column)

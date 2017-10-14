@@ -47,11 +47,11 @@ $this->title = 'Игра «Електрик»';
             </form>
         </div>
 
-        <div class="b-popup js-best">
+        <div class="b-popup js-leaderboard">
             <div class="b-popup__close js-popup__close">&times;</div>
 
-            <h2 class="b-winner-form__header">Лучшие результаты</h2>
-            <table class="b-best-table js-best-table"></table>
+            <h2 class="b-popup__header">Лучшие результаты</h2>
+            <table class="b-leaderboard js-leaderboard-table"></table>
         </div>
 
     </div>
@@ -97,18 +97,20 @@ $click = <<<JS
              event.preventDefault();
              
              $.ajax({
-                 url: '/elektrik/a-j-a-x-load-winners',
+                 url: '/elektrik/a-j-a-x-leaderboard',
                  method: 'POST',
-             }).done(function(winners) {
-                $('.js-best-table').html('');
-                 Object.keys(winners).map(function(key, index) {
-                    var value = winners[key];
-                    $('.js-best-table').append('<tr><td>' + key + '</td><td>' + value + '</td></tr>');
-                });
-                 
+             }).done(function(leaderboard) {
+                $('.js-leaderboard-table').html('');
+                
+                var l = leaderboard.length;
+                for (var i=0; i < l; i++) {
+                    var name = leaderboard[i]['name'];
+                    var step_count = leaderboard[i]['step_count'];
+                    $('.js-leaderboard-table').append('<tr><td>' + (i+1) + '.</td><td>' + name + '</td><td>' + step_count + '</td></tr>');
+                }
              });
              
-             $('.js-best').show();
+             $('.js-leaderboard').show();
          });
          
          $('body').on('click', '.js-popup__close', function(event) {

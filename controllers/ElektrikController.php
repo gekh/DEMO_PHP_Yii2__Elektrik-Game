@@ -2,10 +2,7 @@
 
 namespace app\controllers;
 
-use app\models\Leaderboard;
-use Yii;
 use yii\web\Controller;
-use yii\web\Response;
 use app\processing\Elektrik;
 
 class ElektrikController extends Controller
@@ -62,12 +59,12 @@ class ElektrikController extends Controller
         $elektrik->saveWinner($name);
     }
 
-    public function actionAJAXLoadWinners()
+    public function actionAJAXLeaderboard()
     {
         $elektrik = $this->getElektrik();
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return $elektrik->getBest();
+        return $elektrik->getLeaderboard();
     }
 
 

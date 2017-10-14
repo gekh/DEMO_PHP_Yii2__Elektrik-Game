@@ -151,6 +151,11 @@ input {
     padding     : 30px;
 }
 
+    .b-popup__header {
+        color      : #ffff00;
+        text-align : center;
+    }
+
     .b-popup__close {
         color       : white;
         position    : absolute;
@@ -176,22 +181,30 @@ input {
     }
 
 
-.b-best-table {
-    border : 2px solid white;
+.b-leaderboard {
+    margin: auto;
 }
 
-    .b-best-table tr {
-        border-bottom: 1px dashed green;
+    .b-leaderboard tr + tr {
+        border-top : 1px dashed green;
     }
 
-    .b-best-table td {
-        padding: 5px;
+    .b-leaderboard td {
+        padding    : 20px;
+        text-align : left;
     }
 
-    .b-best-table tr td:nth-child(1) {
+    .b-leaderboard tr td:nth-child(1) {
+        padding    : 0 0 0 20px;
+        text-align : right;
+        color      : grey;
+    }
+
+    .b-leaderboard tr td:nth-child(2) {
         color : yellow;
     }
 
-    .b-best-table tr td:nth-child(2) {
+    .b-leaderboard tr td:nth-child(3) {
         font-weight : bold;
+        font-size   : 120%;
     }
