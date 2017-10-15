@@ -92,6 +92,10 @@ class Elektrik extends Component
             return;
         }
 
+        if ($this->step_count < 25) {
+            return;
+        }
+
         $Leaderboard = new Leaderboard();
         $Leaderboard->name = $name;
         $Leaderboard->step_count = $this->step_count;
