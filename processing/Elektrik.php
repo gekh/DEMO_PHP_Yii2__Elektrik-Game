@@ -54,6 +54,23 @@ class Elektrik extends Component
         }
     }
 
+    public function randomMap()
+    {
+        do {
+            $this->reset();
+
+            for ($row = 1; $row <= 5; $row++) {
+                for ($column = 1; $column <= 5; $column++) {
+                    if (rand(1, 2) == 2) {
+                        $this->map[$row][$column] = 1;
+                    }
+                }
+            }
+
+            $count = $this->checkForWin();
+        } while ($count > 20);
+    }
+
     public function dump()
     {
         for ($row = 1; $row <= 5; $row++) {
@@ -104,6 +121,10 @@ class Elektrik extends Component
         $this->name = $name;
     }
 
+
+
+    /*** PROTECTED ZONE ***/
+
     protected function misfortune($play_row, $play_column)
     {
         if (rand(1, 25) == 25) {
@@ -135,6 +156,10 @@ class Elektrik extends Component
         if ($count == 25) {
             $this->win = true;
         }
+
+        return $count;
     }
+
+
 
 }

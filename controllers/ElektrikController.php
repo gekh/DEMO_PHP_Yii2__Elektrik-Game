@@ -47,7 +47,7 @@ class ElektrikController extends Controller
     public function actionAJAXNewGame()
     {
         $elektrik = $this->getElektrik();
-        $elektrik->reset();
+        $elektrik->randomMap();
 
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return $this->gameData();
