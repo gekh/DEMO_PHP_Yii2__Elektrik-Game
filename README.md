@@ -1,15 +1,22 @@
 Игра «Электрик»
 ============================
 
+DEMO: http://elektrik.lkg0dzre.com/
 
 Установка
 ------------
 
-Для установки потребуется Composer
+Для установки потребуется [Composer](https://getcomposer.org/download/)
 
 ~~~
 php composer.phar global require "fxp/composer-asset-plugin:^1.3.1"
 php composer.phar install
+~~~
+
+Еще потребуется установить и включить SQLite, если он еще не установлен. Для Ubuntu это делается командой
+
+~~~
+sudo apt-get install php-sqlite3
 ~~~
 
 Описание
