@@ -37,7 +37,7 @@ $this->title = 'Игра «Електрик»';
 
 
         <div class="b-popup js-winner">
-            <div class="b-popup__close js-popup__close">&times;</div>
+            <div class="b-popup__close js-popup__close" data-new-game="true">&times;</div>
 
             <form class="b-winner-form js-winner-form" action="/">
                 <h2 class="b-winner-form__header">Вы победили!</h2>
@@ -93,7 +93,7 @@ $click = <<<JS
          $('body').on('click', '.js-button--new-game', function(event) {
             event.preventDefault();
             
-            resetField();
+            newGame();
         });
          
          $('body').on('click', '.js-button--best', function(event) {
@@ -119,7 +119,10 @@ $click = <<<JS
          $('body').on('click', '.js-popup__close', function(event) {
              event.preventDefault();
              
-             resetField();
+             if ($(this).data('new-game') == true) {
+                newGame();
+             }
+             
              $(this).parent().hide();
          });
          
@@ -134,7 +137,7 @@ $click = <<<JS
                  data: $(this).serialize()    
              }).done(function() {
                  $(that).parent().hide();
-                 resetField();
+                 newGame();
              });
          });
         
@@ -151,7 +154,7 @@ $click = <<<JS
             });
         }
         
-        function resetField() {
+        function newGame() {
             $.ajax({
                 url: '/elektrik/a-j-a-x-new-game',
                 method: 'POST',
