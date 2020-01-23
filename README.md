@@ -1,6 +1,10 @@
 Elektrik Game
 ============================
 
+It's an demonstration project to show my skills.
+
+In this project I use
+
 
 ![Elektrik Preview](https://repository-images.githubusercontent.com/107301853/549b9700-3dd6-11ea-986f-78dedc09b0a4)
 
@@ -13,6 +17,53 @@ You need [Composer](https://getcomposer.org/download/) and SQLite to install
 ~~~
 composer global require "fxp/composer-asset-plugin:^1.3.1"
 composer install
+~~~
+
+Nginx config:
+
+~~~
+server {
+    listen                *:80;
+    server_name           elektrik.dv;
+    client_max_body_size  128m;
+    root                  /var/www/elektrik/web;
+    index                 index.php;
+    
+    access_log            /var/log/nginx/elektrik.access.log;
+    error_log             /var/log/nginx/elektrik.error.log;
+    
+    location ~ /\. {
+        root      /var/www/elektrik/web;
+        autoindex off;
+        deny      all;
+    }
+    location ~ \.php$ {
+        root                 /var/www/elektrik/web;
+        try_files            $uri =404;
+        include              /etc/nginx/fastcgi_params;
+        
+        fastcgi_pass         127.0.0.1:9000;
+        fastcgi_read_timeout 30000;
+        fastcgi_param        SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+    location ~ ^/assets/.*\.php$ {
+        root      /var/www/elektrik/web;
+        autoindex off;
+        deny      all;
+    }
+    location / {
+        root      /var/www/elektrik/web;
+        try_files $uri $uri/ /index.php$is_args$args;
+        autoindex off;
+    }
+    location ~ \.(js|css|png|jpg|gif|swf|ico|pdf|mov|fla|zip|rar)$ {
+        root      /var/www/elektrik/web;
+        try_files $uri =404;
+        autoindex off;
+    }
+    
+    sendfile off;
+}
 ~~~
 
 Description
