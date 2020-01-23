@@ -1,5 +1,8 @@
-Игра «Электрик»
+Elektrik Game
 ============================
+
+
+![Elektrik Preview](https://repository-images.githubusercontent.com/107301853/549b9700-3dd6-11ea-986f-78dedc09b0a4)
 
 
 Установка
