@@ -22,6 +22,7 @@ It's a simple game. You have a field 5x5 round buttons. When you start new game 
 
 - Main controller: `controllers/ElektrikController.php`
 - Game logic: `processing/Elektrik.php`
+- Markup and JavaScript: `views/elektrik/elektrik.php`
 - Database table model: `models/Leaderboard.php`
 - Migrations to created database: `migrations`
 - I use SQLite as database:
