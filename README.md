@@ -1,7 +1,7 @@
 Elektrik Game
 ============================
 
-It's an demonstration project to show my skills.
+It's a demonstration project to show my skills.
 
 In this project I use a [PHP framework Yii2](https://www.yiiframework.com/), [jQuery](https://jquery.com/) and [SQLite](https://www.sqlite.org/index.html)
 
