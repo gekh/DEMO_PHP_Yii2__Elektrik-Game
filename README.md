@@ -3,7 +3,7 @@ Elektrik Game
 
 It's an demonstration project to show my skills.
 
-In this project I use
+In this project I use a [PHP framework Yii2](https://www.yiiframework.com/) and [jQuery](https://jquery.com/)
 
 
 ![Elektrik Preview](https://repository-images.githubusercontent.com/107301853/549b9700-3dd6-11ea-986f-78dedc09b0a4)
