@@ -6,7 +6,10 @@
 $this->title = 'Game Elektrik';
 ?>
 
-<h1><?=$this->title ?> <a href="https://github.com/lkg0dzre/DEMO__Yii2__Elektrik-Game" target="_blank">GitHub</a></h1>
+<h1>
+    <?=$this->title ?> <br>
+    <a href="https://github.com/lkg0dzre/DEMO__Yii2__Elektrik-Game" target="_blank">GitHub</a>
+</h1>
 
 <div class="b-buttons">
     <div class="b-button js-button--new-game">New game</div>
