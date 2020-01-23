@@ -1,15 +1,16 @@
 <?php
 
-/* @var $this yii\web\View */
+/** @var \app\processing\Elektrik $Elektrik */
+/** @var $this yii\web\View */
 
-$this->title = 'Игра «Електрик»';
+$this->title = 'Game Elektrik';
 ?>
 
-<h1><?=$this->title ?></h1>
+<h1><?=$this->title ?> <a href="https://github.com/lkg0dzre/DEMO__Yii2__Elektrik-Game" target="_blank">GitHub</a></h1>
 
 <div class="b-buttons">
-    <div class="b-button js-button--new-game">Новая игра</div>
-    <div class="b-button js-button--best">Лучшие результаты</div>
+    <div class="b-button js-button--new-game">New game</div>
+    <div class="b-button js-button--best">Leaderboard</div>
 </div>
 
 <div class="site-index">
@@ -32,7 +33,7 @@ $this->title = 'Игра «Електрик»';
         --></div>
 
         <div class="b-ste-counter">
-            Сделано ходов: <span class="js-step-count"></span>
+            Your score: <span class="js-step-count"></span>
         </div>
 
 
@@ -40,12 +41,12 @@ $this->title = 'Игра «Електрик»';
             <div class="b-popup__close js-popup__close" data-new-game="true">&times;</div>
 
             <form class="b-winner-form js-winner-form" action="/">
-                <h2 class="b-winner-form__header">Вы победили!</h2>
-                <h3 class="b-winner-form__header">Ваш результат: <span class="b-winner-form__step_count js-winner__step-count"></span></h3>
+                <h2 class="b-winner-form__header">WIN!</h2>
+                <h3 class="b-winner-form__header">Your score: <span class="b-winner-form__step_count js-winner__step-count"></span></h3>
                 <br>
-                Ваше имя: <br>
-                <input class="b-winner-form__input" type="text" name="name" value="<?=$elektrik->getName() ?>">
-                <button type="submit" class="b-button">Отправить</button>
+                Name: <br>
+                <input class="b-winner-form__input" type="text" name="name" value="<?= $Elektrik->getName() ?>">
+                <button type="submit" class="b-button">Send</button>
             </form>
         </div>
 
@@ -53,7 +54,7 @@ $this->title = 'Игра «Електрик»';
         <div class="b-popup js-leaderboard">
             <div class="b-popup__close js-popup__close">&times;</div>
 
-            <h2 class="b-popup__header">Лучшие результаты</h2>
+            <h2 class="b-popup__header">Leaderboard</h2>
             <table class="b-leaderboard js-leaderboard-table"></table>
         </div>
 
@@ -71,14 +72,16 @@ $click = <<<JS
         loadMap();
         
         
-        $('body').on('click', '.js-cell', function(event) {
+        let jHtml = $('html');
+        
+        jHtml.on('click', '.js-cell', function(event) {
             event.preventDefault();
             
             var row = $(this).data('row');
             var column = $(this).data('column');
             
             $.ajax({
-                url: '/elektrik/a-j-a-x-click-cell',
+                url: '/elektrik/ajax-click-cell',
                 method: 'POST',
                 data: {
                     row: row,
@@ -90,17 +93,17 @@ $click = <<<JS
 
         });
         
-         $('body').on('click', '.js-button--new-game', function(event) {
+         jHtml.on('click', '.js-button--new-game', function(event) {
             event.preventDefault();
             
             newGame();
         });
          
-         $('body').on('click', '.js-button--best', function(event) {
+         jHtml.on('click', '.js-button--best', function(event) {
              event.preventDefault();
              
              $.ajax({
-                 url: '/elektrik/a-j-a-x-leaderboard',
+                 url: '/elektrik/ajax-leaderboard',
                  method: 'POST',
              }).done(function(leaderboard) {
                 $('.js-leaderboard-table').html('');
@@ -116,7 +119,7 @@ $click = <<<JS
              $('.js-leaderboard').show();
          });
          
-         $('body').on('click', '.js-popup__close', function(event) {
+         jHtml.on('click', '.js-popup__close', function(event) {
              event.preventDefault();
              
              if ($(this).data('new-game') == true) {
@@ -126,13 +129,13 @@ $click = <<<JS
              $(this).parent().hide();
          });
          
-         $('body').on('submit', '.js-winner-form', function(event) {
+         jHtml.on('submit', '.js-winner-form', function(event) {
              event.preventDefault();
              
              var that = this;
              
              $.ajax({
-                 url: '/elektrik/a-j-a-x-save-winner',
+                 url: '/elektrik/ajax-save-winner',
                  method: 'POST',
                  data: $(this).serialize()    
              }).done(function() {
@@ -146,7 +149,7 @@ $click = <<<JS
         
         function loadMap() {
             $.ajax({
-                url: '/elektrik/a-j-a-x-load-map',
+                url: '/elektrik/ajax-load-map',
                 method: 'POST',
                 data: {}    
             }).done(function(game_data) {
@@ -156,7 +159,7 @@ $click = <<<JS
         
         function newGame() {
             $.ajax({
-                url: '/elektrik/a-j-a-x-new-game',
+                url: '/elektrik/ajax-new-game',
                 method: 'POST',
             }).done(function(game_data) {
                 updateGame(game_data);

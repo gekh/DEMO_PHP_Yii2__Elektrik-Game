@@ -2,12 +2,17 @@
 
 namespace app\controllers;
 
+use Yii;
 use yii\web\Controller;
 use app\processing\Elektrik;
+use yii\web\Response;
 
+/**
+ * Controller for all http queries
+ * @property \app\processing\Elektrik $elektrik
+ */
 class ElektrikController extends Controller
 {
-
     public $defaultAction = 'elektrik';
 
     public function actions()
@@ -19,77 +24,94 @@ class ElektrikController extends Controller
         ];
     }
 
+    /**
+     * Main page
+     */
     public function actionElektrik()
     {
-        $elektrik = $this->getElektrik();
-        return $this->render('elektrik', compact('elektrik'));
+        $Elektrik = $this->getElektrik();
+        return $this->render('elektrik', compact('Elektrik'));
     }
 
-    public function actionAJAXClickCell()
+    /**
+     * Handles clicks on buttons
+     */
+    public function actionAjaxClickCell()
     {
-        $elektrik = $this->getElektrik();
+        $Elektrik = $this->getElektrik();
 
-        $row = intval($_POST['row']);
-        $column = intval($_POST['column']);
+        $row = (int)$_POST['row'];
+        $column = (int)$_POST['column'];
 
-        $elektrik->play($row, $column);
+        $Elektrik->play($row, $column);
 
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         return $this->gameData();
     }
 
-    public function actionAJAXLoadMap()
+    public function actionAjaxLoadMap()
     {
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         return $this->gameData();
     }
 
-    public function actionAJAXNewGame()
+    public function actionAjaxNewGame()
     {
-        $elektrik = $this->getElektrik();
-        $elektrik->randomMap();
+        $Elektrik = $this->getElektrik();
+        $Elektrik->randomMap();
 
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         return $this->gameData();
     }
 
-    public function actionAJAXSaveWinner()
+    /**
+     * Saves the form with the winner name, when the game is successfully finished
+     */
+    public function actionAjaxSaveWinner()
     {
-        $elektrik = $this->getElektrik();
-        $name = strval($_POST['name']);
-        $elektrik->saveWinner($name);
+        $Elektrik = $this->getElektrik();
+        $name = (string)$_POST['name'];
+        $Elektrik->saveWinner($name);
     }
 
-    public function actionAJAXLeaderboard()
+    /**
+     * Load leaderboard data
+     */
+    public function actionAjaxLeaderboard()
     {
-        $elektrik = $this->getElektrik();
+        $Elektrik = $this->getElektrik();
 
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return $elektrik->getLeaderboard();
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $Elektrik->getLeaderboard();
     }
 
 
-
+    /**
+     * @return Elektrik Object with all game data and processing methods
+     */
     protected function getElektrik()
     {
-        $elektrik = \Yii::$app->session->get('elektrik');
+        $Elektrik = Yii::$app->session->get('Elektrik');
 
-        if (!$elektrik) {
-            $elektrik = new Elektrik();
-            \Yii::$app->session->set('elektrik', $elektrik);
+        if (!$Elektrik) {
+            $Elektrik = new Elektrik();
+            Yii::$app->session->set('Elektrik', $Elektrik);
         }
 
-        return $elektrik;
+        return $Elektrik;
     }
 
+    /**
+     * @return array Main data about the game
+     */
     protected function gameData()
     {
-        $elektrik = $this->getElektrik();
+        $Elektrik = $this->getElektrik();
 
         return [
-            'win' => $elektrik->isWin(),
-            'map' => $elektrik->getMap(),
-            'step_count' => $elektrik->getStepCount(),
+            'win' => $Elektrik->isWin(),
+            'map' => $Elektrik->getMap(),
+            'step_count' => $Elektrik->getStepCount(),
         ];
     }
 
