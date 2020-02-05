@@ -12,7 +12,7 @@ In this project I use a [PHP framework Yii2](https://www.yiiframework.com/), [jQ
 Installation
 ------------
 
-You need [Composer](https://getcomposer.org/download/) and SQLite to install
+You need [Composer](https://getcomposer.org/download/) and SQLite to be installed
 
 ~~~
 composer global require "fxp/composer-asset-plugin:^1.3.1"
